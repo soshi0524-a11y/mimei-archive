@@ -1,0 +1,13 @@
+{
+  "name": "mimei-archive",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "node preview-server.mjs",
+    "build": "node --check preview-server.mjs",
+    "start": "node preview-server.mjs"
+  }
+}
