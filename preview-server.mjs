@@ -1,8 +1,9 @@
-﻿import http from "node:http";
+import http from "node:http";
 import { URL } from "node:url";
 
 const port = Number(process.env.PORT || 3000);
 const host = process.env.HOST || "0.0.0.0";
+const googleSiteVerification = "MRsseZ7mXQZr6JRX6unP_hxWAE3Qfi-qPVenJ3p8O0g";
 
 const nav = [
   ["/about", "資料室について"],
@@ -462,7 +463,8 @@ function link(href, label) {
 
 function page(title, body, options = {}) {
   const robots = options.noindex ? '<meta name="robots" content="noindex,nofollow">' : "";
-  return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">${robots}<title>${escapeHtml(title)} | 未明文芸会資料室</title><style>${css}</style></head><body><div class="page-shell"><header class="site-header"><div class="site-title"><a href="/">未明文芸会資料室</a></div><nav class="main-nav" aria-label="公開ナビ">${nav.map(([href, label]) => link(href, label)).join("")}</nav></header><main>${body}</main><footer class="site-footer"><span class="footer-admin">© 未明文芸会資料室　｜　${link("/admin", "管理用")}</span></footer></div></body></html>`;
+  const verification = googleSiteVerification ? `<meta name="google-site-verification" content="${escapeHtml(googleSiteVerification)}">` : "";
+  return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">${robots}${verification}<title>${escapeHtml(title)} | 未明文芸会資料室</title><style>${css}</style></head><body><div class="page-shell"><header class="site-header"><div class="site-title"><a href="/">未明文芸会資料室</a></div><nav class="main-nav" aria-label="公開ナビ">${nav.map(([href, label]) => link(href, label)).join("")}</nav></header><main>${body}</main><footer class="site-footer"><span class="footer-admin">© 未明文芸会資料室　｜　${link("/admin", "管理用")}</span></footer></div></body></html>`;
 }
 
 function section(title, body) {
@@ -1120,4 +1122,5 @@ const server = http.createServer(async (request, response) => {
 });
 
 server.listen(port, host);
+﻿
 
