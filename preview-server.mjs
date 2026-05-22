@@ -614,7 +614,7 @@ function getSearchHtml(q, managerId = "") {
   }
 
   if (rid || isExactTerm(q, ["照会ID", "発行時点の照会ID", "発行責任者ID", "役職コード", "PB", "ED", "AC"])) {
-    return `<p>該当する公開資料は見つかりませんでした。<br>照会IDは、対象資料の照会画面で使用してください。</p>`;
+    return `<p>該当する公開資料は見つかりませんでした。<br>照会IDは、対象資料の照会画面で使用してください。<br>照会IDの取扱いについては、部内通知をご確認ください。</p>`;
   }
 
   if (["A-101-17"].includes(id || "") || has(q, ["101-17", "10117"])) {
@@ -818,7 +818,7 @@ function adminLookupHtml(q, managerId = "") {
   if (notice) return internalNoticeHtml(notice);
   if (isA41017Query(q, id)) return adminRestrictedCard(managerId);
   if (rid || isExactTerm(q, ["照会ID", "発行時点の照会ID", "発行責任者ID", "役職コード", "PB", "ED", "AC"])) {
-    return `<p>該当する公開資料は見つかりませんでした。<br>照会IDは、対象資料の照会画面で使用してください。</p>`;
+    return `<p>該当する公開資料は見つかりませんでした。<br>照会IDは、対象資料の照会画面で使用してください。<br>照会IDの取扱いについては、部内通知をご確認ください。</p>`;
   }
   return `<p>該当する管理記録は見つかりませんでした。</p>`;
 }
